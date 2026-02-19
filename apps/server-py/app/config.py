@@ -19,6 +19,11 @@ class Settings(BaseSettings):
     ANTHROPIC_API_KEY: str = ""
     FRED_API_KEY: str = ""
 
+    # Supabase
+    SUPABASE_URL: str = ""
+    SUPABASE_ANON_KEY: str = ""
+    SUPABASE_SERVICE_ROLE_KEY: str = ""
+
     # Server
     PORT: int = 8080
     # Comma-separated allowed origins, e.g.:

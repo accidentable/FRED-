@@ -10,7 +10,7 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
 from app.config import get_settings
-from app.routes import chat, fred, sessions, stocks
+from app.routes import chat, fred, portfolio, sessions, stocks
 from app.routes import chat_stream
 
 
@@ -79,6 +79,7 @@ app.add_middleware(
 app.include_router(chat.router)
 app.include_router(chat_stream.router)
 app.include_router(fred.router)
+app.include_router(portfolio.router)
 app.include_router(sessions.router)
 app.include_router(stocks.router)
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Eye } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Eye } from 'lucide-react';
 import { useUIStore } from '@/stores/uiStore';
 import { DraggedChip } from '@/stores/chatStore';
 import { WatchCard } from './WatchCard';
@@ -9,11 +9,12 @@ const SLOTS = [0, 1, 2, 3, 4] as const;
 export const WatchPanel: React.FC = () => {
   const { watchedIndicators, addWatchIndicator, removeWatchIndicator } = useUIStore();
   const [isDragOver, setIsDragOver] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   const canAdd = watchedIndicators.length < 5;
 
   const handleDragOver = (e: React.DragEvent) => {
-    if (!canAdd) return;
+    if (!canAdd || collapsed) return;
     e.preventDefault();
     e.stopPropagation();
     e.dataTransfer.dropEffect = 'copy';
@@ -35,7 +36,7 @@ export const WatchPanel: React.FC = () => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragOver(false);
-    if (!canAdd) return;
+    if (!canAdd || collapsed) return;
 
     try {
       const raw = e.dataTransfer.getData('text/plain');
@@ -49,6 +50,33 @@ export const WatchPanel: React.FC = () => {
     }
   };
 
+  // ── Collapsed strip ──────────────────────────────────────────────
+  if (collapsed) {
+    return (
+      <div className="w-8 flex-shrink-0 flex flex-col border-l border-terminal-gray/30 bg-terminal-bg">
+        <button
+          onClick={() => setCollapsed(false)}
+          className="flex-1 flex flex-col items-center justify-start pt-3 gap-3 text-terminal-dim hover:text-terminal-orange transition-colors"
+          title="Watch 패널 열기"
+        >
+          <ChevronLeft size={12} />
+          <span
+            className="font-mono text-[9px] text-terminal-orange tracking-widest"
+            style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
+          >
+            WATCH
+          </span>
+          {watchedIndicators.length > 0 && (
+            <span className="font-mono text-[9px] text-terminal-dim">
+              {watchedIndicators.length}
+            </span>
+          )}
+        </button>
+      </div>
+    );
+  }
+
+  // ── Expanded panel ───────────────────────────────────────────────
   return (
     <div
       className={`w-72 flex-shrink-0 flex flex-col border-l transition-colors duration-150 overflow-hidden ${
@@ -65,10 +93,17 @@ export const WatchPanel: React.FC = () => {
         <div className="flex items-center gap-1.5">
           <Eye size={11} className="text-terminal-orange" />
           <span className="font-mono text-[10px] text-terminal-orange tracking-widest">WATCH</span>
+          <span className="font-mono text-[10px] text-terminal-muted">
+            {watchedIndicators.length}/5
+          </span>
         </div>
-        <span className="font-mono text-[10px] text-terminal-muted">
-          {watchedIndicators.length}/5
-        </span>
+        <button
+          onClick={() => setCollapsed(true)}
+          className="text-terminal-dim hover:text-terminal-orange transition-colors"
+          title="접기"
+        >
+          <ChevronRight size={13} />
+        </button>
       </div>
 
       {/* Content: always 5 equal-height rows via grid */}
@@ -79,7 +114,10 @@ export const WatchPanel: React.FC = () => {
 
           if (id) {
             return (
-              <div key={id} className="min-h-0 min-w-0 overflow-hidden border-b border-terminal-gray/20 last:border-b-0">
+              <div
+                key={id}
+                className="min-h-0 min-w-0 overflow-hidden border-b border-terminal-gray/20 last:border-b-0 animate-slide-down"
+              >
                 <WatchCard seriesId={id} onRemove={() => removeWatchIndicator(id)} />
               </div>
             );
@@ -88,7 +126,7 @@ export const WatchPanel: React.FC = () => {
           return (
             <div
               key={`slot-${slot}`}
-              className={`min-h-0 border-b border-terminal-gray/15 last:border-b-0 flex items-center justify-center`}
+              className="min-h-0 border-b border-terminal-gray/15 last:border-b-0 flex items-center justify-center"
             >
               {isFirstEmpty && canAdd && (
                 <div

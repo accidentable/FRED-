@@ -16,6 +16,7 @@ interface SessionHistoryState {
   sessions: SessionEntry[];
   saveSession: (sessionId: string, messages: ChatMessage[]) => void;
   removeSession: (id: string) => void;
+  clear: () => void;
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────
@@ -57,6 +58,8 @@ export const useSessionHistoryStore = create<SessionHistoryState>()(
 
       removeSession: (id) =>
         set((state) => ({ sessions: state.sessions.filter((s) => s.id !== id) })),
+
+      clear: () => set({ sessions: [] }),
     }),
     { name: 'fred-os-session-history' }
   )

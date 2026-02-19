@@ -1,9 +1,10 @@
 import React from 'react';
-import { Menu, PanelRightClose, PanelRightOpen, SquarePen } from 'lucide-react';
+import { LogOut, Menu, PanelRightClose, PanelRightOpen, SquarePen } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useChatStore } from '@/stores/chatStore';
 import { useUIStore } from '@/stores/uiStore';
 import { useSessionHistoryStore } from '@/stores/sessionHistoryStore';
+import { useAuthStore } from '@/stores/authStore';
 import { MessageRole } from '@fred/shared';
 
 interface TopBarProps {
@@ -16,6 +17,7 @@ export const TopBar: React.FC<TopBarProps> = ({ showRightPanel, onToggleRightPan
   const { reset, isLoading, messages, sessionId } = useChatStore();
   const { setWatchedIndicators } = useUIStore();
   const saveSession = useSessionHistoryStore((s) => s.saveSession);
+  const { signOut, user } = useAuthStore();
 
   const handleNewChat = () => {
     if (isLoading) return;
@@ -55,6 +57,16 @@ export const TopBar: React.FC<TopBarProps> = ({ showRightPanel, onToggleRightPan
         >
           <SquarePen size={13} />
           <span className="hidden sm:inline">새 채팅</span>
+        </button>
+
+        {/* Logout button */}
+        <button
+          onClick={signOut}
+          className="flex items-center gap-1.5 px-3 py-1.5 text-xs border border-terminal-gray text-terminal-dim hover:border-terminal-red hover:text-terminal-red transition-colors"
+          title={user?.email ?? '로그아웃'}
+        >
+          <LogOut size={13} />
+          <span className="hidden sm:inline">로그아웃</span>
         </button>
 
         <button

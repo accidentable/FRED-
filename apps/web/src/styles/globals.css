@@ -52,10 +52,24 @@ body,
       opacity: 0;
       transform: scale(0.95);
     }
-
     to {
       opacity: 1;
       transform: scale(1);
+    }
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }
@@ -65,8 +79,9 @@ body,
   .prose {
     font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
     color: #9CA3AF;
-    line-height: 1.75;
-    letter-spacing: -0.02em;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    letter-spacing: -0.015em;
   }
 
   .prose h1,
@@ -75,21 +90,22 @@ body,
   .prose h4,
   .prose h5,
   .prose h6 {
-    @apply text-terminal-primary font-semibold mt-5 mb-2;
+    @apply text-terminal-primary font-semibold mt-3 mb-1;
+    font-size: 0.8rem;
     letter-spacing: -0.02em;
-    line-height: 1.4;
+    line-height: 1.35;
   }
 
   .prose h2 {
-    @apply text-sm;
+    font-size: 0.8rem;
   }
 
   .prose h3 {
-    @apply text-sm;
+    font-size: 0.78rem;
   }
 
   .prose p {
-    @apply my-3 text-terminal-secondary;
+    @apply my-1.5 text-terminal-secondary;
   }
 
   .prose strong {
@@ -106,35 +122,35 @@ body,
 
   .prose ul,
   .prose ol {
-    @apply my-2 pl-5 text-terminal-secondary;
+    @apply my-1 pl-4 text-terminal-secondary;
   }
 
   .prose li {
-    @apply my-1;
+    @apply my-0.5;
   }
 
   .prose hr {
-    @apply border-terminal-gray/40 my-4;
+    @apply border-terminal-gray/40 my-2;
   }
 
   .prose pre {
-    @apply border-l-2 border-terminal-orange/40 pl-3 overflow-x-auto my-2;
+    @apply border-l-2 border-terminal-orange/40 pl-3 overflow-x-auto my-1.5;
     background: transparent;
     font-family: 'JetBrains Mono', Consolas, monospace;
-    font-size: 0.82em;
-    line-height: 1.6;
+    font-size: 0.78em;
+    line-height: 1.5;
     letter-spacing: 0;
   }
 
   .prose code {
     @apply text-terminal-orange/80;
     font-family: 'JetBrains Mono', Consolas, monospace;
-    font-size: 0.85em;
+    font-size: 0.8em;
     letter-spacing: 0;
     background: transparent;
   }
 
   .prose blockquote {
-    @apply border-l-2 border-terminal-orange pl-3 text-terminal-secondary italic my-3;
+    @apply border-l-2 border-terminal-orange pl-3 text-terminal-secondary italic my-2;
   }
 }

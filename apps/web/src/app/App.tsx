@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LeftPanel } from '@/components/layout/LeftPanel';
 import { RightPanel } from '@/components/layout/RightPanel';
 import { TopBar } from '@/components/layout/TopBar';
@@ -10,6 +10,10 @@ import { useChat } from '@/hooks/useChat';
 import { useFredData } from '@/hooks/useFredData';
 import { useUIStore } from '@/stores/uiStore';
 import { useChatStore, DraggedChip } from '@/stores/chatStore';
+import { useAuthStore } from '@/stores/authStore';
+import { usePortfolioStore } from '@/stores/portfolioStore';
+import { useSessionHistoryStore } from '@/stores/sessionHistoryStore';
+import AuthPage from '@/pages/AuthPage';
 import { INDICATOR_NAMES_KO } from '@fred/shared';
 
 const App: React.FC = () => {
@@ -21,6 +25,40 @@ const App: React.FC = () => {
   const { showRightPanel, overlayData, isOverlayLoading, toggleRightPanel } = useUIStore();
   const { chips, addChip, removeChip } = useChatStore();
 
+  const { user, isLoading: authLoading, initialize } = useAuthStore();
+  const { fetchPortfolio, reset: resetPortfolio } = usePortfolioStore();
+  const { reset: resetChat } = useChatStore();
+  const { clear: clearSessions } = useSessionHistoryStore();
+
+  // ── Auth init & portfolio fetch ────────────────────────────────
+  useEffect(() => {
+    initialize();
+  }, [initialize]);
+
+  useEffect(() => {
+    if (user) {
+      fetchPortfolio();
+    } else {
+      resetPortfolio();
+      resetChat();
+      clearSessions();
+    }
+  }, [user, fetchPortfolio, resetPortfolio, resetChat, clearSessions]);
+
+  // ── Loading splash ─────────────────────────────────────────────
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-terminal-bg flex items-center justify-center font-mono">
+        <span className="text-terminal-green text-xs animate-pulse tracking-widest">
+          INITIALIZING...
+        </span>
+      </div>
+    );
+  }
+
+  // ── Auth gate ──────────────────────────────────────────────────
+  if (!user) return <AuthPage />;
+
   // ── Drag & Drop (entire center panel) ─────────────────────────
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -30,7 +68,6 @@ const App: React.FC = () => {
   };
 
   const handleDragLeave = (e: React.DragEvent) => {
-    // Only trigger if leaving the center panel entirely
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     const { clientX, clientY } = e;
     if (
@@ -44,7 +81,6 @@ const App: React.FC = () => {
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
-
     try {
       const raw = e.dataTransfer.getData('text/plain');
       const data = JSON.parse(raw) as DraggedChip;
@@ -71,20 +107,15 @@ const App: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-terminal-bg text-terminal-primary font-mono overflow-hidden">
-      {/* Left Panel */}
       <LeftPanel />
 
-      {/* Center Panel */}
       <div className="flex-1 flex flex-col min-w-0">
         <TopBar
           showRightPanel={showRightPanel}
           onToggleRightPanel={toggleRightPanel}
         />
 
-        {/* Below TopBar: Chat area (left) + Watch Panel (right) */}
         <div className="flex flex-1 min-h-0">
-
-          {/* Chat area — drop zone for chips */}
           <div
             className="flex-1 flex flex-col relative min-w-0"
             onDragOver={handleDragOver}
@@ -93,7 +124,6 @@ const App: React.FC = () => {
           >
             <MessageList messages={messages} isLoading={isLoading} />
 
-            {/* Drop overlay */}
             {isDragging && (
               <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
                 <div className="absolute inset-0 bg-terminal-orange/5 border-2 border-dashed border-terminal-orange/40" />
@@ -116,15 +146,12 @@ const App: React.FC = () => {
             />
           </div>
 
-          {/* Watch Panel — inline chart monitor */}
           <WatchPanel />
         </div>
       </div>
 
-      {/* Right Panel */}
       {showRightPanel && <RightPanel onQuickView={fetchQuickView} />}
 
-      {/* Chart Overlay */}
       {(overlayData || isOverlayLoading) && (
         <ChartOverlay
           data={overlayData}
