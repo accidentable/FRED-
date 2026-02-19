@@ -22,7 +22,7 @@ export const RightPanel: React.FC<RightPanelProps> = ({ onQuickView }) => {
     ticker: string; name: string; price?: number; change?: number; changePercent?: number;
   }>>([]);
   const [isSearching, setIsSearching] = useState(false);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);

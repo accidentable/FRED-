@@ -50,7 +50,7 @@ export const WatchCard: React.FC<WatchCardProps> = ({ seriesId, onRemove }) => {
           </span>
           {latest && (
             <span className="font-mono text-[9px] text-terminal-muted leading-tight">
-              {seriesId} &nbsp;·&nbsp; {Number(latest.value).toLocaleString()} {data?.units_short ?? ''}
+              {seriesId} &nbsp;·&nbsp; {Number(latest.value).toLocaleString()} {data?.units ?? ''}
             </span>
           )}
         </div>
@@ -123,11 +123,13 @@ export const WatchCard: React.FC<WatchCardProps> = ({ seriesId, onRemove }) => {
                   padding: '3px 6px',
                 }}
                 itemStyle={{ color: '#ff5f1f' }}
-                formatter={(value: number | string) => {
-                  const num = typeof value === 'string' ? parseFloat(value) : value;
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                formatter={(value: any) => {
+                  const num = typeof value === 'string' ? parseFloat(value) : value as number;
                   return [num.toLocaleString(), seriesId];
                 }}
-                labelFormatter={(label: string) => label}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                labelFormatter={(label: any) => label}
               />
               <Area
                 type="monotone"

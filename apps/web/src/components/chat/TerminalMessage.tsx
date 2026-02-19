@@ -25,10 +25,10 @@ export const TerminalMessage: React.FC<TerminalMessageProps> = ({ message }) => 
     return (
       <div className="mb-7 text-sm text-left">
         <pre className="font-mono text-terminal-orange text-[10px] leading-tight whitespace-pre select-none mb-3">
-          {message.content.split('\n').slice(0, 9).join('\n')}
+          {(message.content ?? '').split('\n').slice(0, 9).join('\n')}
         </pre>
         <div className="prose prose-sm max-w-none text-terminal-secondary">
-          <ReactMarkdown>{message.content.split('\n').slice(9).join('\n')}</ReactMarkdown>
+          <ReactMarkdown>{(message.content ?? '').split('\n').slice(9).join('\n')}</ReactMarkdown>
         </div>
       </div>
     );
