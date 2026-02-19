@@ -5,7 +5,7 @@
     "rewrites": [
         {
             "source": "/api/(.*)",
-            "destination": "https://fred-os-api-fh3ewfxxvq-du.a.run.app/api/$1"
+            "destination": "https://fred-os-api-932863380761.asia-northeast3.run.app/api/$1"
         }
     ]
 }
