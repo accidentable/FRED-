@@ -1,0 +1,11 @@
+{
+    "buildCommand": "pnpm --filter @fred/web build",
+    "outputDirectory": "apps/web/dist",
+    "installCommand": "pnpm install",
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "https://fred-os-api-fh3ewfxxvq-du.a.run.app/api/$1"
+        }
+    ]
+}
