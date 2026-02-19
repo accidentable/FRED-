@@ -1,0 +1,12 @@
+{
+    "buildCommand": "cd ../.. && pnpm --filter @fred/web build",
+    "outputDirectory": "dist",
+    "installCommand": "cd ../.. && pnpm install",
+    "framework": "vite",
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "https://YOUR_CLOUD_RUN_URL/api/$1"
+        }
+    ]
+}

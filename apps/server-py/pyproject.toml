@@ -1,0 +1,20 @@
+[project]
+name = "fred-server"
+version = "1.0.0"
+description = "FRED-OS Backend Orchestrator"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi[standard]>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "langchain>=0.3.0",
+    "langchain-google-genai>=2.0.0",
+    "langgraph>=0.2.0",
+    "fredapi>=0.5.0",
+    "pandas>=2.0.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+dev = "uvicorn app.main:app --reload --port 3001"

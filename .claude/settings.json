@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(dir:*)",
+      "Bash(test:*)",
+      "Read(//tmp/claude/c--Users-pc-Desktop-fred-terminal-orchestrator/tasks/**)",
+      "Bash(pnpm dev)",
+      "Bash(.venv/Scripts/python.exe -m uvicorn:*)",
+      "Read(//c/Users/pc/Desktop/fred-terminal-orchestrator/**)",
+      "Bash(cmd /c \"taskkill /PID 8504 /F & taskkill /PID 17132 /F\")",
+      "Bash(cmd /c \"taskkill /PID 8504 /F 2>&1 & taskkill /PID 17132 /F 2>&1\")",
+      "Bash(cmd /c \"taskkill /F /PID 8504\")",
+      "Bash(cmd /c \"taskkill /F /PID 8504 2>&1 && taskkill /F /PID 17132 2>&1\")"
+    ]
+  }
+}

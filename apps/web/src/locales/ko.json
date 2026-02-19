@@ -1,0 +1,119 @@
+{
+    "app": {
+        "title": "FRED-OS",
+        "version": "v2.4.1 (STABLE)",
+        "input_placeholder": "명령어 입력 또는 데이터 객체를 여기에 드롭하세요...",
+        "chip_placeholder": "분석 명령을 입력하세요...",
+        "analyze_prefix": "분석 ",
+        "drop_hint": "▼ 여기에 드롭하세요 ▼"
+    },
+    "topbar": {
+        "title_prefix": "COMMAND",
+        "title_accent": "DECK",
+        "latency": "지연시간",
+        "toggle_panel": "데이터 패널 토글"
+    },
+    "left_panel": {
+        "header": "SYSTEM LOGS",
+        "recent_sessions": "최근 세션",
+        "system_events": "시스템 이벤트",
+        "event_connected": "연결 완료",
+        "event_api_ok": "API 게이트웨이: 정상",
+        "event_latency_spike": "지연 시간 급증 감지"
+    },
+    "right_panel": {
+        "header": "DATA_OBJECTS",
+        "search_placeholder": "지표 검색...",
+        "drag_hint": "객체를 채팅 터미널로 드래그하세요",
+        "quick_view": "빠른 차트 보기"
+    },
+    "chat": {
+        "processing": "요청 처리 중",
+        "error_connection": "오류: 연결이 끊어졌거나 요청을 처리할 수 없습니다."
+    },
+    "chart": {
+        "overlay_title": "QUICK_VIEW_MODULE",
+        "fetching": "데이터 스트림 조회 중...",
+        "data_link_failed": "데이터 연결 실패",
+        "unit": "단위",
+        "freq": "주기",
+        "last_updated": "최종 업데이트",
+        "tooltip_value": "값",
+        "tooltip_date": "날짜"
+    },
+    "welcome": {
+        "header": "FRED-OS ORCHESTRATOR v2.0.4 [연결됨]",
+        "message": "**FRED-OS**에 오신 것을 환영합니다.\n\n**사용 방법:**\n1. 오른쪽 패널의 경제 지표를 채팅창으로 드래그하세요.\n2. 지표의 (+) 버튼을 클릭하면 빠른 차트를 미리 볼 수 있습니다.\n3. 명령어를 입력하여 데이터를 분석하세요."
+    },
+    "sessions": {
+        "session_1": "2024 인플레이션 분석",
+        "session_2": "GDP vs 실업률",
+        "session_3": "기술 섹터 변동성",
+        "session_4": "금리 전망"
+    },
+    "categories": {
+        "NATIONAL_ACCOUNTS": "국민계정",
+        "INFLATION_PRICES": "물가·인플레이션",
+        "LABOR_MARKET": "노동시장",
+        "MONETARY": "통화·금리",
+        "MARKETS": "금융시장"
+    },
+    "indicators": {
+        "GDP": {
+            "title": "국내총생산 (GDP)",
+            "desc": "재화와 서비스의 시장 가치"
+        },
+        "GDPC1": {
+            "title": "실질 GDP",
+            "desc": "인플레이션 조정 GDP"
+        },
+        "CPIAUCSL": {
+            "title": "소비자물가지수 (CPI)",
+            "desc": "도시 소비자 물가 변동"
+        },
+        "PCE": {
+            "title": "PCE 물가지수",
+            "desc": "개인소비지출 물가 변동"
+        },
+        "CPILFESL": {
+            "title": "근원 CPI",
+            "desc": "식품·에너지 제외 CPI"
+        },
+        "UNRATE": {
+            "title": "실업률",
+            "desc": "노동력 대비 실업자 비율"
+        },
+        "PAYEMS": {
+            "title": "비농업 고용",
+            "desc": "비농업 부문 총 고용자 수"
+        },
+        "ICSA": {
+            "title": "신규 실업수당 청구",
+            "desc": "신규 실업보험 청구 건수"
+        },
+        "FEDFUNDS": {
+            "title": "연방기금금리",
+            "desc": "미국 기준금리 (오버나이트)"
+        },
+        "M2SL": {
+            "title": "M2 통화량",
+            "desc": "현금, 예금, 준화폐 포함"
+        },
+        "DGS10": {
+            "title": "10년물 국채금리",
+            "desc": "미 국채 10년 만기 수익률"
+        },
+        "SP500": {
+            "title": "S&P 500",
+            "desc": "미국 대형주 주가지수"
+        },
+        "VIXCLS": {
+            "title": "VIX 변동성 지수",
+            "desc": "시장 공포 지수"
+        },
+        "DCOILWTICO": {
+            "title": "WTI 원유 가격",
+            "desc": "서부 텍사스산 원유 현물 가격"
+        }
+    }
+}

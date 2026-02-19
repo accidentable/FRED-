@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Forced theme reset (placed after @tailwind so it wins the cascade) ── */
+:root {
+  --background: #1A1A1A;
+  --foreground: #F9FAF9;
+  --card: #242424;
+  --border: #333333;
+}
+
+html,
+body,
+#root {
+  background-color: #1A1A1A !important;
+  color: #F9FAF9 !important;
+}
+
+@layer base {
+  body {
+    @apply bg-terminal-bg text-terminal-primary;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer components {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-terminal-black;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-terminal-gray rounded;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-terminal-dim;
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+/* ── Markdown Prose ─────────────────────────────────────────────────── */
+@layer components {
+  .prose {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    color: #9CA3AF;
+    line-height: 1.75;
+    letter-spacing: -0.02em;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply text-terminal-primary font-semibold mt-5 mb-2;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+  }
+
+  .prose h2 {
+    @apply text-sm;
+  }
+
+  .prose h3 {
+    @apply text-sm;
+  }
+
+  .prose p {
+    @apply my-3 text-terminal-secondary;
+  }
+
+  .prose strong {
+    @apply text-terminal-orange font-semibold;
+  }
+
+  .prose em {
+    @apply text-terminal-secondary;
+  }
+
+  .prose a {
+    @apply text-terminal-green underline;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply my-2 pl-5 text-terminal-secondary;
+  }
+
+  .prose li {
+    @apply my-1;
+  }
+
+  .prose hr {
+    @apply border-terminal-gray/40 my-4;
+  }
+
+  .prose pre {
+    @apply border-l-2 border-terminal-orange/40 pl-3 overflow-x-auto my-2;
+    background: transparent;
+    font-family: 'JetBrains Mono', Consolas, monospace;
+    font-size: 0.82em;
+    line-height: 1.6;
+    letter-spacing: 0;
+  }
+
+  .prose code {
+    @apply text-terminal-orange/80;
+    font-family: 'JetBrains Mono', Consolas, monospace;
+    font-size: 0.85em;
+    letter-spacing: 0;
+    background: transparent;
+  }
+
+  .prose blockquote {
+    @apply border-l-2 border-terminal-orange pl-3 text-terminal-secondary italic my-3;
+  }
+}

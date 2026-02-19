@@ -1,0 +1,119 @@
+{
+    "app": {
+        "title": "FRED-OS",
+        "version": "v2.4.1 (STABLE)",
+        "input_placeholder": "Enter command or drop data object here...",
+        "chip_placeholder": "Type analysis command...",
+        "analyze_prefix": "Analyze ",
+        "drop_hint": "▼ DROP HERE ▼"
+    },
+    "topbar": {
+        "title_prefix": "COMMAND",
+        "title_accent": "DECK",
+        "latency": "LATENCY",
+        "toggle_panel": "Toggle Data Armory"
+    },
+    "left_panel": {
+        "header": "SYSTEM LOGS",
+        "recent_sessions": "Recent Sessions",
+        "system_events": "System Events",
+        "event_connected": "Connection established",
+        "event_api_ok": "API Gateway: OK",
+        "event_latency_spike": "Latency spike detected"
+    },
+    "right_panel": {
+        "header": "DATA_OBJECTS",
+        "search_placeholder": "Search indicators...",
+        "drag_hint": "Drag objects to chat terminal",
+        "quick_view": "Quick View Chart"
+    },
+    "chat": {
+        "processing": "PROCESSING_REQUEST",
+        "error_connection": "ERROR: Connection interrupted or query unprocessable."
+    },
+    "chart": {
+        "overlay_title": "QUICK_VIEW_MODULE",
+        "fetching": "FETCHING_DATASTREAM...",
+        "data_link_failed": "DATA_LINK_FAILED",
+        "unit": "UNIT",
+        "freq": "FREQ",
+        "last_updated": "LAST",
+        "tooltip_value": "Value",
+        "tooltip_date": "Date"
+    },
+    "welcome": {
+        "header": "FRED-OS ORCHESTRATOR v2.0.4 [CONNECTED]",
+        "message": "Welcome to **FRED-OS**.\n\n**INSTRUCTIONS:**\n1. Drag economic objects from the right panel into the command line.\n2. Click the (+) button on any object for an instant chart preview.\n3. Type commands normally to analyze data."
+    },
+    "sessions": {
+        "session_1": "Inflation Analysis 2024",
+        "session_2": "GDP vs Unemployment",
+        "session_3": "Tech Sector Volatility",
+        "session_4": "Interest Rate Projections"
+    },
+    "categories": {
+        "NATIONAL_ACCOUNTS": "National Accounts",
+        "INFLATION_PRICES": "Inflation & Prices",
+        "LABOR_MARKET": "Labor Market",
+        "MONETARY": "Monetary",
+        "MARKETS": "Markets"
+    },
+    "indicators": {
+        "GDP": {
+            "title": "Gross Domestic Product",
+            "desc": "Market value of goods/services."
+        },
+        "GDPC1": {
+            "title": "Real GDP",
+            "desc": "Inflation-adjusted value of goods."
+        },
+        "CPIAUCSL": {
+            "title": "CPI (All Items)",
+            "desc": "Inflation for urban consumers."
+        },
+        "PCE": {
+            "title": "PCE Price Index",
+            "desc": "Price changes for goods/services."
+        },
+        "CPILFESL": {
+            "title": "Core CPI",
+            "desc": "CPI excluding food and energy."
+        },
+        "UNRATE": {
+            "title": "Unemployment Rate",
+            "desc": "% of labor force unemployed."
+        },
+        "PAYEMS": {
+            "title": "Total Nonfarm Payroll",
+            "desc": "Employment measure."
+        },
+        "ICSA": {
+            "title": "Initial Claims",
+            "desc": "New unemployment insurance claims."
+        },
+        "FEDFUNDS": {
+            "title": "Fed Funds Rate",
+            "desc": "Overnight interest rate."
+        },
+        "M2SL": {
+            "title": "M2 Money Supply",
+            "desc": "Cash, checking, and near money."
+        },
+        "DGS10": {
+            "title": "10-Year Treasury",
+            "desc": "Constant maturity rate."
+        },
+        "SP500": {
+            "title": "S&P 500",
+            "desc": "Large-cap stock market index."
+        },
+        "VIXCLS": {
+            "title": "VIX",
+            "desc": "CBOE Volatility Index."
+        },
+        "DCOILWTICO": {
+            "title": "Crude Oil (WTI)",
+            "desc": "Spot price of West Texas Intermediate."
+        }
+    }
+}
