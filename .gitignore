@@ -1,6 +1,8 @@
 # Dependencies
+.claude/
 node_modules/
 .pnpm-store/
+
 
 # Python
 __pycache__/
